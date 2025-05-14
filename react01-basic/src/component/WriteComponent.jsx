@@ -1,4 +1,4 @@
-function WriteComponent(){
+function WriteComponent(props){
   /**
   JSX는 HTML과 유사한 문법을 사용하지만, XML 문법을 따르므로 반드시
   쌍(Pair)를 이뤄야한다. 따라서 <input>태그도 종료태그를 사용하거나
