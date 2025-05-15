@@ -23,28 +23,6 @@ function ArticleView(props){
             <th>내용</th>
             <td>{props.selectRow.contents}</td>
           </tr>
-          <tr>
-            <th>내용1</th>
-            <td>{
-            props.selectRow.contents.split('\n').map((currVal)=>{
-              console.log(currVal);
-              return(<>
-                {currVal} <br key={Math.random()} />
-              </>)
-            })}</td>
-          </tr>
-          <tr>
-            <th>내용2</th>
-            <td style={{'whiteSpace':'pre-wrap'}}>
-              {props.selectRow.contents}
-            </td>
-          </tr>
-          <tr>
-            <th>내용3</th>
-            <td className="contWrap">
-              {props.selectRow.contents}
-            </td>
-          </tr>
         </tbody>
       </table>
     </article>

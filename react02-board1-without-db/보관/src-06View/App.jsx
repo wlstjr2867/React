@@ -1,13 +1,12 @@
 import { useState } from "react";
 
+//모듈화 한 컴포넌트 임포트
 import NavView from "./components/navigation/NavView";
 import NavWrite from "./components/navigation/NavWrite";
 import NavList from "./components/navigation/NavList";
-import NavEdit from "./components/navigation/NavEdit";
 import ArticleList from "./components/article/ArticleList";
 import ArticleView from "./components/article/ArticleView";
 import ArticleWrite from "./components/article/ArticleWrite";
-import ArticleEdit from "./components/article/ArticleEdit";
 
 function ReadyComp() {
   return (<>
@@ -16,6 +15,10 @@ function ReadyComp() {
   </>); 
 }
 
+/**
+매개변수 props를 통해 전달된 값(타이틀)을 출력
+헤더 컴포넌트는 모든 페이지에서 공통으로 사용된다
+ */
 function Header(props) {
   console.log('props', props.title);
   return (<>
@@ -26,23 +29,23 @@ function Header(props) {
 }
 
   function App() {
-    const [boardData, setBoardData] = useState([
+    const boardData = [
       {no:1, title:'오늘은 React공부하는날', writer:'낙자쌤', date:'2023-01-01',
         contents:'React를 뽀개봅시당'},
       {no:2, title:'어제는 Javascript공부해씸', writer:'유겸이', date:'2023-03-03',
         contents:'Javascript는 할게 너무 많아요'},
       {no:3, title:'내일은 Project해야징', writer:'개똥이', date:'2023-05-05',
         contents:'Project는 뭘 만들어볼까?'}
-    ]);
+    ];
     
     const [mode, setMode] = useState('list');
 
     const [no, setNo] = useState(null);
-
-    const [nextNo, setNextNo] = useState(4);
     
+    //컴포넌트와 타이틀을 저장할 변수 생성
     let articleComp, navComp, titleVar, selectRow;
 
+    //mode의 값에 따라 각 화면을 전환하기 위해 분기한다.
     if(mode==='list'){
       titleVar = '게시판-목록(props)';
       navComp = <NavList onChangeMode={()=>{
@@ -75,76 +78,10 @@ function Header(props) {
       navComp = <NavWrite onChangeMode={()=>{
         setMode('list');
       }}></NavWrite>
-      
-      articleComp = <ArticleWrite writeAction = {(t, w, c)=>{
-        console.log("App.js", t, w, c);
-        
-        let dateObj = new Date();
-        var year = dateObj.getFullYear();
-        var month = ("0" + (1 + dateObj.getMonth())).slice(-2);
-        var day = ("0" + dateObj.getDate()).slice(-2);
-        let nowDate = year + "-" + month + "-" + day;
-
-        let addBoardData = {no:nextNo, title:t, writer:w, contents:c,
-                              date:nowDate};
-        
-        let copyBoardData = [...boardData];
-        copyBoardData.push(addBoardData);
-        setBoardData(copyBoardData);
-        
-        setNextNo(nextNo+1);
-        setMode('list');
-      }}></ArticleWrite>
-    }
-
-    else if(mode==='delete'){
-      let newBoardData = [];
-      for(let i=0; i<boardData.length; i++){
-        if(no !== boardData[i].no){
-          newBoardData.push(boardData[i]);
-        }
-      }
-      setBoardData(newBoardData);
-      setMode('list');
-    }
-
-    else if(mode==='edit'){
-      titleVar = '게시판-수정(props)';
-
-      navComp = <NavEdit
-        onChangeMode={()=>{
-          setMode('list');
-        }}
-        onBack={()=>{
-          setMode('view');
-          setNo(no);
-        }
-    }></NavEdit>
-
-    for(let i=0; i<boardData.length; i++){
-      if(no===boardData[i].no){
-        selectRow = boardData[i];
-      }
-    }
-    articleComp = <ArticleEdit selectRow={selectRow}
-      editAction={(t, w, c)=>{
-        let editBoardData = {no:no, title:t, writer:w, contents:c,
-        date:selectRow.date};
-        console.log('수정내용', editBoardData);
-        
-        let copyBoardData = [...boardData];
-        for(let i=0; i<copyBoardData.length; i++){
-          if(copyBoardData[i].no===no){
-            copyBoardData[i] = editBoardData;
-            break;
-          }
-        }
-        setBoardData(copyBoardData);
-        setMode('view');
-      }}
-    ></ArticleEdit>;
+      articleComp = <ArticleWrite></ArticleWrite>
     }
     else{
+      //mode의 값이 없는 경우 '준비중'을 화면에 표시한다.
       navComp = <ReadyComp></ReadyComp>;
       articleComp = '';
     }
@@ -152,6 +89,7 @@ function Header(props) {
   return(
     <div className="App">
       <Header title={titleVar}></Header>
+      {/* mode의 변화에 따라 다른 컴포넌트를 렌더링한다. */}
       {navComp}
       {articleComp}
     </div>
