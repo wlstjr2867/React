@@ -24,6 +24,54 @@ function View(props){
     return prev;
   }, {});
 
+  let readNum = Number(params.no);
+  let prevNum = 0, nextNum = 0;
+
+  if(readNum-1===0){
+    prevNum = 1;
+  }
+  else{
+    prevNum = Number(params.no) - 1;
+  }
+
+  nextNum = readNum + 1;
+  let isNextNum = props.boardData.reduce((prev, curr) => {
+    if(curr.no===nextNum){
+      prev = true;
+    }
+    return prev;
+  }, false);
+  if(isNextNum===false){
+    nextNum = readNum;
+  }
+  
+  const goPrev = () => {
+    if(readNum-1===0){
+      prevNum = 1;
+      alert('이전 페이지가 없습니다');
+    }
+    else{
+      prevNum = Number(params.no) - 1;
+    }
+    console.log('prevNum', prevNum);
+    props.navigate("/view/"+ prevNum);
+  }
+
+  const goNext = () => {
+    nextNum = readNum + 1;
+    let isNextNum = props.boardData.reduce((prev, curr) => {
+      if(curr.no===nextNum) {
+        prev = true;
+      }
+      return prev;
+    }, false);
+    if(isNextNum===false){
+      nextNum = readNum;
+      alert('다음 페이지가 없습니다')
+    }
+    console.log('nextNum', nextNum);
+    props.navigate("/view/"+ nextNum);
+  }
   return(<>
     <header>
         <h2>게시판-읽기</h2>
@@ -60,6 +108,17 @@ function View(props){
             </tr>
           </tbody>
         </table>
+        <Link to={"/view/"+prevNum}>이전글1</Link>
+        <Link to={"/view/"+nextNum}>다음글1</Link>
+
+        <a href="/" onClick={(e) =>{
+          e.preventDefault();
+          goPrev();
+        }}>이전글2</a>
+        <a href="/" onClick={(e) =>{
+          e.preventDefault();
+          goNext();
+        }}>다음글2</a>
      </article>
   </>)
 }
