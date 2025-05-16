@@ -26,10 +26,14 @@ function Article(props){
       // 중복되지 않는 key prop은 게시물의 일련번호로 설정
       <tr key={row.no}>
         <td className="cen">{row.no}</td>
+          {/* no.1 -> no.2 -> no.3 */}
         {/* 제목을 클릭하면 열람으로 전환하기 위한 랭크 생성 */}
         <td><a href={"/read/"+row.no}>{row.title}</a></td>
+        {/* read/1 1.오늘은 React공부하는날 */}
         <td className="cen">{row.writer}</td>
+        {/* 1.낙자쌤 */}
         <td className="cen">{row.date}</td>
+        {/* 1.날짜 */}
       </tr>
     )
   }
@@ -55,13 +59,13 @@ function Article(props){
 
   function App() {
     //게시판의 데이터로 사용할 객체
-    const boardData = [
+    const boardData = [ //boardData 배열 ([대괄호가 배열])
       {no:1, title:'오늘은 React공부하는날', writer:'낙자쌤', date:'2023-01-01',
-        contents:'React를 뽀개봅시당'},
+        contents:'React를 뽀개봅시당'}, //boardData 배열 안에 들어있는 객체 1 (중괄호가 객체)
       {no:2, title:'어제는 Javascript공부해씸', writer:'유겸이', date:'2023-03-03',
-        contents:'Javascript는 할게 너무 많아요'},
+        contents:'Javascript는 할게 너무 많아요'},//boardData 배열 안에 들어있는 객체 2
       {no:3, title:'내일은 Project해야징', writer:'개똥이', date:'2023-05-05',
-        contents:'Project는 뭘 만들어볼까?'}
+        contents:'Project는 뭘 만들어볼까?'}//boardData 배열 안에 들어있는 객체 3
     ];
 
   return(<>
