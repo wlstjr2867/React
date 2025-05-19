@@ -1,0 +1,291 @@
+
+{ 
+  "results": [
+    {
+      "gender": "female",
+      "name": {
+        "title": "Ms",
+        "first": "Ella",
+        "last": "Thomas"
+      },
+      "location": {
+        "street": {
+          "number": 4581,
+          "name": "First Street"
+        },
+        "city": "Melbourne",
+        "state": "Australian Capital Territory",
+        "country": "Australia",
+        "postcode": 9803,
+        "coordinates": {
+          "latitude": "-81.8544",
+          "longitude": "27.7280"
+        },
+        "timezone": {
+          "offset": "-3:30",
+          "description": "Newfoundland"
+        }
+      },
+      "email": "ella.thomas@example.com",
+      "login": {
+        "uuid": "4ea47490-a6a7-4196-9821-05cb664abef7",
+        "username": "bigbird389",
+        "password": "bilbo",
+        "salt": "yOEfKxYG",
+        "md5": "a382ac27d11311996d5ffddba249c705",
+        "sha1": "37c01b124054414b83abbd906421217b5bc54a1a",
+        "sha256": "84ffcc5ab0dd562d4a13ef722269bc775e5c0522e7b5bccf8ed5d80a36280b91"
+      },
+      "dob": {
+        "date": "1987-12-16T16:44:13.605Z",
+        "age": 37
+      },
+      "registered": {
+        "date": "2016-04-30T11:39:58.474Z",
+        "age": 9
+      },
+      "phone": "03-2679-9420",
+      "cell": "0431-467-871",
+      "id": {
+        "name": "TFN",
+        "value": "282040119"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/39.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/39.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/39.jpg"
+      },
+      "nat": "AU"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "Ms",
+        "first": "Melina",
+        "last": "Pantelić"
+      },
+      "location": {
+        "street": {
+          "number": 4726,
+          "name": "Dvadesetog Oktob"
+        },
+        "city": "Žabari",
+        "state": "South Bačka",
+        "country": "Serbia",
+        "postcode": 51647,
+        "coordinates": {
+          "latitude": "-52.3143",
+          "longitude": "-157.1912"
+        },
+        "timezone": {
+          "offset": "0:00",
+          "description": "Western Europe Time, London, Lisbon, Casablanca"
+        }
+      },
+      "email": "melina.pantelic@example.com",
+      "login": {
+        "uuid": "616acdb3-3d40-4602-affd-b87f773fc7da",
+        "username": "orangecat674",
+        "password": "mnbv",
+        "salt": "2Qu0DShA",
+        "md5": "46d87fd36ff27a3f34a56c3300a30eac",
+        "sha1": "32e86fd8c17bd6929c3bf08fb46fa7315dbc536e",
+        "sha256": "0655dbea6e498a1def42fee70a6d72670997818166ef65c965370cef6a5e7e52"
+      },
+      "dob": {
+        "date": "1960-02-29T13:45:15.740Z",
+        "age": 65
+      },
+      "registered": {
+        "date": "2020-10-13T20:48:35.830Z",
+        "age": 4
+      },
+      "phone": "014-5332-256",
+      "cell": "065-9199-374",
+      "id": {
+        "name": "SID",
+        "value": "334914685"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/38.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/38.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
+      },
+      "nat": "RS"
+    },
+    {
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "اميرعلي",
+        "last": "گلشن"
+      },
+      "location": {
+        "street": {
+          "number": 9170,
+          "name": "میدان توحید"
+        },
+        "city": "یزد",
+        "state": "مازندران",
+        "country": "Iran",
+        "postcode": 28570,
+        "coordinates": {
+          "latitude": "-31.8437",
+          "longitude": "178.0449"
+        },
+        "timezone": {
+          "offset": "+9:30",
+          "description": "Adelaide, Darwin"
+        }
+      },
+      "email": "myraaly.glshn@example.com",
+      "login": {
+        "uuid": "7b26981a-4e60-4785-8439-a8f2ff5b7657",
+        "username": "ticklishduck228",
+        "password": "karen1",
+        "salt": "w0xvq6Pg",
+        "md5": "4d0c62da3bd990f74ad750dda3dea9b5",
+        "sha1": "268b93a8eb10b2c87b295d1aa7b43d7dbc8c4746",
+        "sha256": "846f28e557779a1ede3f168e4ce7ca0e79b77923cfcc8263ccc7d17d750fbadf"
+      },
+      "dob": {
+        "date": "1982-03-29T00:34:34.923Z",
+        "age": 43
+      },
+      "registered": {
+        "date": "2020-10-19T07:52:58.113Z",
+        "age": 4
+      },
+      "phone": "033-15669562",
+      "cell": "0972-883-6376",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/48.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/48.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/48.jpg"
+      },
+      "nat": "IR"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "Mrs",
+        "first": "النا",
+        "last": "حیدری"
+      },
+      "location": {
+        "street": {
+          "number": 1075,
+          "name": "پارک 17 شهریور"
+        },
+        "city": "ارومیه",
+        "state": "اردبیل",
+        "country": "Iran",
+        "postcode": 22179,
+        "coordinates": {
+          "latitude": "87.4295",
+          "longitude": "-139.3455"
+        },
+        "timezone": {
+          "offset": "+3:30",
+          "description": "Tehran"
+        }
+      },
+      "email": "ln.hydry@example.com",
+      "login": {
+        "uuid": "6ae9953f-eebf-4a35-b554-ea18d32ae755",
+        "username": "happyladybug156",
+        "password": "mini",
+        "salt": "GSBFgAy4",
+        "md5": "f0bd66c7368b4820c4171c63300834ff",
+        "sha1": "5eed82a772e9ab42bd07217d0a08fb8f24a00753",
+        "sha256": "9db64723a06e9cf38120949ef30892e49bb7716513851151bb153ebc6c6a9ad6"
+      },
+      "dob": {
+        "date": "1964-03-15T01:42:02.340Z",
+        "age": 61
+      },
+      "registered": {
+        "date": "2020-03-30T10:28:00.881Z",
+        "age": 5
+      },
+      "phone": "098-47188726",
+      "cell": "0983-647-0103",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/76.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/76.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/76.jpg"
+      },
+      "nat": "IR"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "Miss",
+        "first": "Vasilina",
+        "last": "Dolnickiy"
+      },
+      "location": {
+        "street": {
+          "number": 8652,
+          "name": "Prospekt Yuriya Gagarina"
+        },
+        "city": "Noviy Bug",
+        "state": "Chernivecka",
+        "country": "Ukraine",
+        "postcode": 34883,
+        "coordinates": {
+          "latitude": "-63.3204",
+          "longitude": "34.4361"
+        },
+        "timezone": {
+          "offset": "+5:45",
+          "description": "Kathmandu"
+        }
+      },
+      "email": "vasilina.dolnickiy@example.com",
+      "login": {
+        "uuid": "a9f8b4b3-ed5a-46ba-9922-591e1128b781",
+        "username": "ticklishladybug140",
+        "password": "america1",
+        "salt": "WXUuRiTJ",
+        "md5": "48998bc44b93ca2e4a52929755a2832e",
+        "sha1": "0a4ad7f5ff424c1f849570732e196b415631e181",
+        "sha256": "f31a4fae5fbf9b1da5f7a3221e15d079abcac79aa5b1f35407a15256b528c668"
+      },
+      "dob": {
+        "date": "1993-03-15T09:32:23.278Z",
+        "age": 32
+      },
+      "registered": {
+        "date": "2018-03-21T21:25:18.078Z",
+        "age": 7
+      },
+      "phone": "(068) X01-8349",
+      "cell": "(096) B30-4364",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/28.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/28.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/28.jpg"
+      },
+      "nat": "UA"
+    }
+  ],
+  "info": {
+    "seed": "0552b1903bf4b821",
+    "results": 5,
+    "page": 1,
+    "version": "1.4"
+  }
+}
