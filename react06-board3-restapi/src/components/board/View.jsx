@@ -36,7 +36,7 @@ function View(props){
      </header>
      <nav>
         <Link to="/list">목록</Link>&nbsp;
-        <Link to="/edit">수정</Link>&nbsp;
+        <Link to={"/edit/"+params.idx}>수정</Link>&nbsp;
         <Link to="/delete">삭제</Link>
      </nav>
      <article>

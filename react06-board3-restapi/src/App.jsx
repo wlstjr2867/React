@@ -4,6 +4,7 @@ import {Routes, Route, Link} from 'react-router-dom';
 import List from './components/board/List';
 import Write from './components/board/Write';
 import View from './components/board/View';
+import Edit from './components/board/Edit';
 import NotFound from './components/common/NotFound';
 
 function App() {
