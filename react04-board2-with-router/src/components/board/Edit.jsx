@@ -63,16 +63,16 @@ function Edit(props) {
             </tr>
             <tr>
               <th>제목</th>
-              <td><input type="text" name="title" value={writer}
+              <td><input type="text" name="title" value={title}
                     onChange={(event)=>{
-                      setWriter(event.target.value);
+                      setTitle(event.target.value);
                      }} /></td>
             </tr>
             <tr>
               <th>내용</th>
-              <td><textarea name="contents" rows="3" value={writer}
+              <td><textarea name="contents" rows="3" value={contents}
                     onChange={(event)=>{
-                      setWriter(event.target.value);
+                      setContents(event.target.value);
                     }}></textarea></td>
             </tr>
           </tbody>
