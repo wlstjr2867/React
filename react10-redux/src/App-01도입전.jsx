@@ -14,7 +14,7 @@ const Right1 = (props) => {
     </div>
   )
 }
-const Right2 = (props) => {
+const Right2 = (props) => { //onMy
   return(
     <div>
       <h2>Right2</h2>
@@ -24,7 +24,7 @@ const Right2 = (props) => {
     </div>
   )
 }
-const Right3 = (props) => {
+const Right3 = (props) => { //여기서부터 출발 (버튼이 있음)
   return(
     <div>
       <h2>Right3</h2>
