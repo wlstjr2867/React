@@ -7,7 +7,7 @@ const ActionTypes = {
 }
 
 //리듀서 함수 정의
-const myReducer = (nowState, myAction) => {
+const myReducer = (nowState, myAction) => {//ex) i myAction => {mode:'deposit', amount:1000}
   //현재상태와 액션객체를 매개변수로 받음
   console.log('리듀서 함수 호출', nowState, myAction);
   //Action을 분석한 후 입출금 및 잔고조회를 처리한다.
