@@ -71,7 +71,7 @@ function App() {
       if(no===boardData[i].no){
       selectRow = boardData[i];
       }
-    }
+    }   
 
     articleComp = <ArticleView selectRow={selectRow}></ArticleView>
   }
