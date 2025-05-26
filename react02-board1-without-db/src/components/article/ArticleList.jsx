@@ -1,20 +1,17 @@
-function ArticleList(props){
-  const lists = [];
-  for(let i=0; i<props.boardData.length; i++){
-    let  row = props.boardData[i];
-    lists.push(
-      <tr key={row.no}>
+function ArticleList(props) {
+  const lists = props.boardData.map((row)=>{
+    return (<tr key={row.no}>
         <td className="cen">{row.no}</td>
-        <td><a href={"/read/"+row.no} onClick={(event)=>{
+        <td><a href={'/read/'+row.no} onClick={(event)=>{
           event.preventDefault();
           props.onChangeMode(row.no);
-        }}>{row.title}</a></td>
+        }}>{row.title}</a></td> 
         <td className="cen">{row.writer}</td>
         <td className="cen">{row.date}</td>
-      </tr>
-    )
-  }
-  return (
+    </tr>) ;
+  });
+
+  return (<>
     <article>
       <table id="boardTable">
         <thead>
@@ -30,7 +27,6 @@ function ArticleList(props){
         </tbody>
       </table>
     </article>
-  )
-}
-
+  </>); 
+};
 export default ArticleList;

@@ -11,6 +11,7 @@ function RealtimeCRUD(){
     set() :  기본 쓰기 작업에 사용. 지정된 참조에 데이터를 저장하고 해당
       경로의 기존 데이터를 모두 변경할 수 있다
   */
+ 
   function writeUserData(userId, userName, userPass){
     //새로운 게시물 등록을 위한 Key값을 생성한다. -03ygh.. 요런식
     const newPostKey = push(child(ref(realtime), 'tempValue')).key;
