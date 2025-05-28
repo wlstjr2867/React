@@ -56,21 +56,20 @@ function ModalWindow(props) {
 
 
 function CommentList(props) {
-  const boardData = props.boredData;
+  const boardData = props.boardData;
   const setBoardData = props.setBoardData;
   
   const [commlist, setcommlist] = useState();
   
   const list = boardData.map((current)=>{
     {/* <!-- 댓글 목록 출력 --> */}
-    <ul className="list-group mt-3">
-      <li className="list-group-item">
+      <li key={current.id} className="list-group-item">
         <div className="d-flex justify-content-between">
           <div className="d-flex align-items-center">
-            <strong>작성자명</strong> <small className="ms-2">2025-03-22 14:30</small>
+            <strong>{current.writer}</strong> <small className="ms-2">{current.date}</small>
           </div>
           <div>
-            <LikeCount />
+            <LikeCount like={current.like} />
             <button className="btn btn-outline-warning btn-sm">수정</button>
             <button className="btn btn-outline-danger btn-sm">삭제</button>
           </div>
@@ -80,9 +79,9 @@ function CommentList(props) {
             댓글 작성과 수정은 모달창을 이용하면 됩니다.
         </p>
       </li>
-    </ul>
   })
   return (<>
+    {list}
   </>)  
 }
 
@@ -111,7 +110,7 @@ function App() {
     <BoardView></BoardView>
     <CommentBtn></CommentBtn>
     <ModalWindow></ModalWindow>
-    <CommentList></CommentList>
+    <CommentList boardData={boardData} setBoardData={setBoardData} />
     {/* boardData.map(
       <CommentList boardData={boardData} />
     ) */}
@@ -119,24 +118,3 @@ function App() {
 }
 
 export default App
-
-// const list = comments.map((current)=>{
-//   <ul class="list-group mt-3">
-//     <li class="list-group-item">
-//         <div class="d-flex justify-content-between">
-//             <div class="d-flex align-items-center">
-//                 <strong>{current.writer}</strong> <small class="ms-2">{current.date}</small>
-//             </div>
-//             <div>
-//                 <LikeCount like={current.like}/>
-//                 <button class="btn btn-outline-warning btn-sm">수정</button>
-//                 <button class="btn btn-outline-danger btn-sm">삭제</button>
-//             </div>
-//         </div>
-//         <p class="mt-2 mb-0">
-//             댓글은 여기에 출력됩니다. 줄바꿈 처리도 해주세요. <br>
-//             댓글 작성과 수정은 모달창을 이용하면 됩니다. 
-//         </p>
-//     </li>
-//   </ul>
-// })
