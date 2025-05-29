@@ -1,7 +1,8 @@
-import { collection, getDocs, doc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { firestore } from '../../Config/firestoreConfig';
+import { useNavigate } from 'react-router-dom';
 
 function commonFocusMove(thisObj, numLength, nextObj) {
   let input = document.getElementById(thisObj);
@@ -13,6 +14,7 @@ function commonFocusMove(thisObj, numLength, nextObj) {
 
 function Regist() {
 
+  const navigate = useNavigate();
   const [memberId, setMemberId] = useState([]);
 
   const [form, setForm] = useState({
@@ -28,13 +30,6 @@ function Regist() {
     detailAddress: '',
   });
   
-  const nowDate = () => {
-    let dateObj = new Date();
-    var year = dateObj.getFullYear();
-    var month = ("0" + (1 + dateObj.getMonth())).slice(-2);
-    var day = ("0" + dateObj.getDate()).slice(-2);
-    return year + "-" + month + "-" + day;
-  }
   
   const getCollection = async () => {
     let trArray = [];
@@ -45,18 +40,20 @@ function Regist() {
     });
     setMemberId(trArray);
   }
-
-
-  const memberWrite = async (p_collection, p_id, p_pass, p_name) => {
-    //doc으로 입력을 위한 컬렉션과 도큐먼트를 만든 후 JS객체로 정보 추가
-    await setDoc(doc(firestore, p_collection, p_id), {
-      id : p_id,
-      pass: p_pass,
-      name: p_name,
-      regdate: nowDate(),
-    });
-    console.log('입력성공');
+  
+  const nowDate = () => {
+    let dateObj = new Date();
+    var year = dateObj.getFullYear();
+    var month = ("0" + (1 + dateObj.getMonth())).slice(-2);
+    var day = ("0" + dateObj.getDate()).slice(-2);
+    return year + "-" + month + "-" + day;
   }
+
+  const memberWrite = async (newMem) => {
+    //doc으로 입력을 위한 컬렉션과 도큐먼트를 만든 후 JS객체로 정보 추가
+    await setDoc(doc(firestore, 'members', newMem.userId), {...newMem, date:nowDate()});
+    console.log('입력성공');
+  }  
 
   useEffect(()=>{
     getCollection();
@@ -82,10 +79,18 @@ function Regist() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!form.userId || !form.password || !form.name) {
       alert("모든 항목을 입력해주세요")
+      return;
+    }
+    if(form.userId.length<4 || form.userId.length>15){
+      alert('아이디는 4~15자 사이어야 합니다.')
+      return;
+    }
+    if(form.password.length<8 || form.password.length>15){
+      alert('비밀번호는 8~15자 사이여야 합니다.')
       return;
     }
     if (form.password !== form.confirmPassword) {
@@ -98,8 +103,30 @@ function Regist() {
     }
 
     const email = `${form.emailId}@${form.emailDomain}`;
-    console.log('가입정보', { ...form, email });
-    alert('회원가입 완료!');
+    const phone = `${document.getElementById('phone1').value}-${document.getElementById('phone2').value}-${document.getElementById('phone3').value}`
+
+    const newMember = {
+      userId: form.userId,
+      password: form.password,
+      name: form.name,
+      email,
+      phone,
+      zipcode: form.zipcode,
+      address: form.address,
+      detailAddress: form.detailAddress
+    };
+
+    try{
+      await memberWrite(newMember);
+      alert("회원가입완료!")
+    }
+    catch(error){
+      console.error('회원가입실패', error);
+      alert("회원가입 중 오류가 발생했습니다.");
+    }
+    
+    navigate('/');
+    // console.log('가입정보', { ...form, email });
   };
 
   const handleAddressSearch = () => {
@@ -119,6 +146,7 @@ function Regist() {
   return (<>
     <h2>회원가입</h2>
     <form onSubmit={onSubmit}>
+
       <label htmlFor="userId">아이디</label>
       <div className='id-group'>
         <input type="text" id="userId" name="userId" placeholder='영문과 숫자 4~15자로 입력하세요' value={form.userId} onChange={onChange} required />
