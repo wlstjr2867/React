@@ -48,7 +48,7 @@ function Regist() {
     var day = ("0" + dateObj.getDate()).slice(-2);
     return year + "-" + month + "-" + day;
   }
-
+                                                                                                                      
   const memberWrite = async (newMem) => {
     //doc으로 입력을 위한 컬렉션과 도큐먼트를 만든 후 JS객체로 정보 추가
     await setDoc(doc(firestore, 'members', newMem.userId), {...newMem, date:nowDate()});

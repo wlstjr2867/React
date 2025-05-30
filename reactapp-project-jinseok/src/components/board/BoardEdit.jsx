@@ -1,26 +1,43 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import dummyPosts from "./dummyPosts";
+import { useNavigate, useParams } from "react-router-dom";
+import dummyPosts from './dummyPosts';
 import { firestore } from '../../Config/firestoreConfig';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
 
-function BoardWrite() {
+function BoardEdit() {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const post = dummyPosts.find((p) => p.id === parseInt(id));
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
 
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title);
+      setAuthor(post.author)
+      setContent(post.content)
+    }
+  }, [post]);
+
   const submit = (e) => {
     e.preventDefault();
+    if (ind)
+      console.log('수정된 글', { id, title, author, content });
+    alert("수정이 완료되었습니다.")
+    navigate('/board');
+  }
 
-    const newPost = {
-      id: dummyPosts.length + 1,
-      title, content, author, createdAt: new Date().toISOString(),
-    };
-
-    dummyPosts.unshift(newPost);
-    navigate("/board");
+  const getCollection = async () => {
+    let trArray = [];
+    const querySnapshot = await getDocs(collection(firestore, "members"));
+    querySnapshot.forEach((doc) => {
+      let memberInfo = doc.data();
+      trArray.push(doc.id);
+    });
+    setMemberId(trArray);
   }
 
   const nowDate = () => {
@@ -43,7 +60,7 @@ function BoardWrite() {
 
   return (<>
     <div>
-      <h2>자유게시판-글쓰기</h2>
+      <h2>게시글 수정</h2>
       <form onSubmit={submit}>
         <div>
           <label htmlFor="제목:">제목</label>
@@ -57,10 +74,10 @@ function BoardWrite() {
           <label htmlFor="작성자">작성자</label>
           <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} required />
         </div>
-        <button type="submit">등록</button>
-        <button type="submit" onClick={() => navigate("/board")}>취소</button>
+        <button type="submit">수정완료</button>
+        <button type="button" onClick={() => navigate("/board")}>취소</button>
       </form>
     </div>
   </>);
 }
-export default BoardWrite; 
+export default BoardEdit; 
