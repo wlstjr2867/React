@@ -3,7 +3,6 @@ import Pagination from "./Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import { firestore } from '../../Config/firestoreConfig';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import './board.css';
 
 function BoardList() {
   const navigate = useNavigate();
@@ -56,7 +55,7 @@ function BoardList() {
   }, []);
 
   return (<>
-    <div className="board-container">
+    <div>
       <h2>자유게시판</h2>
 
       <button style={{ marginBottom: '10px' }} onClick={(e) => { navigate('/board/write') }}>[글쓰기] 버튼</button>

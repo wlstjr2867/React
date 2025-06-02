@@ -1,6 +1,6 @@
 import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { firestore } from '../../Config/firestoreConfig';
 import { useNavigate } from 'react-router-dom';
 
@@ -167,9 +167,9 @@ function Regist() {
 
       <label>이메일</label>
       <div className="email-group">
-        <input type="text" id="emailId" name="emailId" placeholder="이메일 아이디" value={form.emailId} onChange={onChange} required />
+        <input type="text" id="emailId" name="emailId" placeholder="이메일 아이디" value={form.emailId} onChange={onChange} style={{width:"70px"}} required />
         <span>@</span>
-        <input type="text" id="emailDomain" name="emailDomain" value={form.emailDomain} onChange={onChange} required readOnly={lock} style={{ width: "50px" }} />
+        <input type="text" id="emailDomain" name="emailDomain" value={form.emailDomain} onChange={onChange} required readOnly={lock} style={{ width: "70px" }} />
         <select name="emailDomain" value={form.emailDomain} onChange={(e) => {
           const val = e.target.value;
           if (val !== "") {

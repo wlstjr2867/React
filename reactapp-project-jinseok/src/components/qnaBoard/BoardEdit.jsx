@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { firestore } from '../../Config/firestoreConfig';
 import { collection, getDocs, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
-import './board.css';
 
 function BoardEdit() {
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ function BoardEdit() {
   };
 
   return (<>
-    <div className="write-container">
+    <div>
       <h2>게시글 수정</h2>
       <form onSubmit={submit}>
         <div>

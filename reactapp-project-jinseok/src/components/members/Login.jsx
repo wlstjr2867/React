@@ -38,6 +38,7 @@ function Login() {
         setIsLoggedIn(true);
         alert('로그인 성공');
         navigate('/');
+        window.location.reload();
         return;
       }
     }
@@ -61,7 +62,8 @@ function Login() {
           <button onClick={logout}>로그아웃</button>
         </div>
       ) : (
-        <form onSubmit={loginForm}>
+        <div className="login-wrapper">
+        <form onSubmit={loginForm} className="login-form">
           <h2>로그인</h2>
           <label htmlFor="userId">아이디</label>
           <input
@@ -69,6 +71,7 @@ function Login() {
             id="userId"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
+            placeholder="아이디"
             required
           />
           <label htmlFor="password">비밀번호</label>
@@ -77,10 +80,12 @@ function Login() {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="비밀번호"
             required
           />
           <button type="submit">로그인</button>
         </form>
+      </div>
       )}
     </>
   );

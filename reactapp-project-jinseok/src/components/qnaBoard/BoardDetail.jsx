@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { firestore } from '../../Config/firestoreConfig';
 import { collection, getDoc, doc, deleteDoc, getDocs} from 'firebase/firestore';
 import { useEffect, useState } from "react";
-import './board.css';
 
 function BoardDetail() {
   const { id } = useParams();
@@ -48,22 +47,13 @@ function BoardDetail() {
     : `${created.getFullYear()}-${String(created.getMonth() + 1).padStart(2, '0')}-${String(created.getDate()).padStart(2, '0')}`;
 
   return (<>
-    <div className="detail-container">
-      <h2 className="detail-title">제목 :{post.title}</h2>
-      <div className="detail-meta">
-        <span className="detail-author">작성자: {post.author}</span>
-        <span className="detail-date">시간 :{timeOrDate}</span>
-      </div>
-      
-      <div className="detail-content">
-        내용: {post.content}
-      </div>
-      
-      <div className="detail-buttons">
+    <div>
+      <h2>{post.title}</h2>
+      <div>{timeOrDate}</div>
+      <p>{post.content}</p>
       <button onClick={() => navigate(-1)}>←뒤로가기</button>
       <button onClick={deleted}>삭제</button>
       <button onClick={() => navigate('/board/edit/' + id)}>수정</button>
-      </div>
     </div>
   </>);
 }

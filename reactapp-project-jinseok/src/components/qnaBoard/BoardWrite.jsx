@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { firestore } from '../../Config/firestoreConfig';
 import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore';
-import './board.css';
 
 function nowDate() {
   const now = new Date();
@@ -43,7 +42,7 @@ function BoardWrite() {
   }
   
   return (<>
-    <div className="write-container">
+    <div>
       <h2>자유게시판-글쓰기</h2>
       <form onSubmit={submit}>
         <div>

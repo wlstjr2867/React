@@ -1,7 +1,6 @@
 import { firestore } from '../Config/firestoreConfig'; // Firestore 인스턴스
 import { collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 
-
 // 🔸 게시글 전체 가져오기
 export const getAllPosts = async () => {
   const querySnapshot = await getDocs(collection(firestore, "posts")); // "posts" 컬렉션 전체 문서 가져오기
