@@ -1,24 +1,23 @@
 import { firestore } from '../Config/firestoreConfig'; // Firestore 인스턴스
 import { collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 
-
-// 🔸 게시글 전체 가져오기
+// 게시글 전체 가져오기
 export const getAllPosts = async () => {
   const querySnapshot = await getDocs(collection(firestore, "posts")); // "posts" 컬렉션 전체 문서 가져오기
-  let postList = [];
+  let postList = []; //저장할 빈 배열 생성
 
   querySnapshot.forEach((docSnap) => {
-    const data = docSnap.data(); // 각 문서 데이터
+    const data = docSnap.data(); // 각 문서 데이터 추출
     postList.push({
-      id: docSnap.id,             // 문서 ID
-      ...data                     // 나머지 필드들 (title, content, createdAt 등)
+      id: docSnap.id,             // ID
+      ...data                     // 데이터
     });
   });
 
   return postList;
 };
 
-// 🔸 단일 게시글 가져오기
+// 단일 게시글 가져오기
 export const getPostById = async (id) => {
   const docRef = doc(firestore, "posts", id);   // 특정 문서 참조
   const docSnap = await getDoc(docRef);         // 문서 가져오기
@@ -30,7 +29,7 @@ export const getPostById = async (id) => {
   }
 };
 
-// 🔸 게시글 작성
+// 게시글 작성
 export const createPost = async ({ title, content }) => {
   const newPost = {
     title,
@@ -42,13 +41,13 @@ export const createPost = async ({ title, content }) => {
   return docRef.id; // 새 문서 ID 반환
 };
 
-// 🔸 게시글 수정
+// 게시글 수정
 export const updatePost = async (id, { title, content }) => {
   const docRef = doc(firestore, "posts", id); // 수정할 문서 참조
   await updateDoc(docRef, { title, content }); // title과 content만 수정
 };
 
-// 🔸 게시글 삭제
+// 게시글 삭제
 export const deletePost = async (id) => {
   const docRef = doc(firestore, "posts", id); // 삭제할 문서 참조
   await deleteDoc(docRef); // 문서 삭제

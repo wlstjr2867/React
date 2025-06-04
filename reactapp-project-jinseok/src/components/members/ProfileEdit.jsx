@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { firestore } from '../../Config/firestoreConfig';
 
+//휴대폰 번호 자동 포커스 이동 함수
 function commonFocusMove(thisObj, numLength, nextObj) {
   let input = document.getElementById(thisObj);
   let strLen = input.value.length;
@@ -15,6 +16,7 @@ function ProfileEdit() {
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   
+  //사용자 폼 상태: 입력 데이터를 담는 객체
   const [form, setForm] = useState({
     userId: '', // 아이디는 보통 읽기 전용
     password: '',
@@ -30,31 +32,36 @@ function ProfileEdit() {
     detailAddress: '',
   });
 
+  //firestore에서 해당 사용자 문서 Id 저장
   const [docId, setDocId] = useState("");
+
 
   useEffect(() => {
     const fetchUserData = async () => {
       const snapshot = await getDocs(collection(firestore, 'members'));
       snapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        if (data.userId === userId) {
+        const data = docSnap.data(); //각 문서의 데이터
+        if (data.userId === userId) { // 로그인한 사용자와 동일한지 비교
+          //이메일 나누기
           let emailId = '';
           let emailDomain = '';
           if(data.email.includes('@')){
             const parts = data.email.split('@');
-            emailId = parts[0];
-            emailDomain = parts[1];
+            emailId = parts[0]; // @ 앞부분 
+            emailDomain = parts[1]; //@ 뒷부분
           }
 
+          //휴대폰 번호 나누기
           let phone1, phone2, phone3;
           if(data.phone.includes('-')){
             [phone1, phone2, phone3] = data.phone.split('-');
           }
+          //form 상태 초기화
           setForm({
             userId : data.userId,
             name: data.name,
             password: data.password,
-            confirmPassword: '', // 최초 불러올 땐 같게
+            confirmPassword: '', // 비번 확인은 공백 처리
             emailId: emailId,
             emailDomain: emailDomain,
             phone1: phone1,
@@ -65,6 +72,7 @@ function ProfileEdit() {
             detailAddress: data.detailAddress,
           });
           setDocId(docSnap.id);
+          //id 저장
         }
       });
     };
@@ -73,6 +81,7 @@ function ProfileEdit() {
 
   const [lock, setLock] = useState(false);
 
+  //input 값 변경 처리 함수
   const Change = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -99,6 +108,7 @@ function ProfileEdit() {
       const email = `${form.emailId}@${form.emailDomain}`; 
       const phone = `${form.phone1}-${form.phone2}-${form.phone3}`;
 
+      //firestore 문서 업데이트
       await updateDoc(userRef, {
         name: form.name,
         password: form.password,
@@ -128,7 +138,7 @@ function ProfileEdit() {
           address: address, // 기본주소에 자동입력
         }));
       },
-    }).open();
+    }).open(); //팝업열기
   };
 
   return (

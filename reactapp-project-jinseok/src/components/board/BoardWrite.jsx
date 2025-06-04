@@ -4,25 +4,27 @@ import { firestore } from '../../Config/firestoreConfig';
 import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import './board.css';
 
+//현재 날짜와 시간을 원하는 형식으로 반환하는 함수
 function nowDate() {
-  const now = new Date();
-
+  const now = new Date(); // 현재 날짜와 시간 객체 생성
+  //숫자를 두자리로 맟추는 함수
   const pad = (num) => String(num).padStart(2, '0');
-
+  //날짜 구성 요소 추출
   const year = now.getFullYear();
   const month = pad(now.getMonth() + 1); // 0-based
   const day = pad(now.getDate());
-
+  //시간 구성 요소 추출
   const hours = pad(now.getHours());
   const minutes = pad(now.getMinutes());
   const seconds = pad(now.getSeconds());
 
+  //최종 문자열 형태로 반환
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
 function BoardWrite() {
   const navigate = useNavigate();
-
+  //입력 폼의 상태를 저장하는 훅
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
@@ -32,7 +34,7 @@ function BoardWrite() {
 
     try{ //posts 컬렉션에 새 문서 추가
       await addDoc(collection(firestore, "posts"),{
-      title, content, author, createdAt: nowDate(), // 서버 기준 시간으로 저장
+      title, content, author, createdAt: nowDate(), // 작성시간
     });
     navigate("/board");
     }
